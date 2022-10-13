@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Job Search Organizer</title>
+        <meta name="description" content="A web application to organize job searching">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/main.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!--Input Section-->
+        <form id="newJobEntry">
+            <h1>Enter Job Information</h1>
+            <div id="jobTitleSection" class="input-section">
+                <label for="job-title">Job Title</label><br>
+                <input id="jobTitle" type="text" name="job-title">
+            </div>
+            <div id="companySection" class="input-section">
+                <label for="company">Company</label><br>
+                <input id="company" type="text" name="company">
+            </div>
+            <div id="appliedSection" class="input-section">
+                <h2>Applied?</h2>
+                <input id="appliedFor" type="radio" name="applied-for">
+                <label for="applied">Yes</label><br>
+                <input id="notAppliedFor" type="radio" name="not-applied-for">
+                <label for="not-applied-for">Not Yet</label>
+            </div>
+            <div id="interviewedSection" class="input-section">
+                <h2>Interview?</h2>
+                <input id="interviewed" type="radio" name="interviewed">
+                <label for="interviewed">Interviewed</label><br>
+                <input id="notAppliedFor" type="radio" name="not-applied-for">
+                <label for="not-applied-for">Not Yet</label>
+            </div>
+            <div id="offeredSection" class="input-section">
+                <h2>Job Offered?</h2>
+                <input id="jobOffered" type="radio" name="offered">
+                <label for="offered">Yes</label><br>
+                <input id="noOffer" type="radio" name="no-offer">
+                <label for="no-offer">Not Yet</label><br>
+                <input id="notSelected" type="radio" name="not-selected">
+                <label for="not-selected">Not Selected</label><br>
+            </div>
+            <div id="notesSection" class="input-section">
+                <label for="notes">Notes:</label><br>
+                <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+            </div>
+            <div id="subClear" class="input-section">
+                <input id="submitJob" class="btn-add" type="submit" value="Add Job">
+                <input id="clearEntry" class="btn-clear" type="reset" value="Clear Entry">
+            </div>    
+        </form>
+        <script src="./js/main.js" async defer></script>
+    </body>
+</html>
