@@ -1,1 +1,12 @@
-body{background-color:aqua}
+/* body{background-color:aqua} */
+
+:root{
+    --white: #fff;
+    --black: #000;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
