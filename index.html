@@ -31,10 +31,10 @@
                 </div>
                 <div id="appliedSection" class="input-section">
                     <h2>Applied?</h2>
-                    <input id="appliedFor" type="radio" name="applied-for">
-                    <label for="applied">Yes</label><br>
-                    <input id="notAppliedFor" type="radio" name="not-applied-for">
-                    <label for="not-applied-for">Not Yet</label>
+                    <input id="appliedFor" value="appliedFor" type="radio" name="apply">
+                    <label for="appliedFor">Yes</label><br>
+                    <input id="notAppliedFor" value="notAppliedFor" type="radio" name="apply">
+                    <label for="notAppliedFor">Not Yet</label>
                 </div>
                 <div id="dateAppliedSection" class="input-section">
                     <label for="date-applied">Date Applied</label><br>
@@ -42,12 +42,12 @@
                 </div>
                 <div id="interviewedSection" class="input-section">
                     <h2>Interview?</h2>
-                    <input id="interviewed" type="radio" name="interviewed">
+                    <input id="interviewed" value="interviewed" type="radio" name="interview">
                     <label for="interviewed">Interviewed</label><br>
-                    <input id="notOfferedIntervew" type="radio" name="not-offered-intervew">
-                    <label for="not-offered-intervew">Not Offered Yet</label><br>
-                    <input id="willInterview" type="radio" name="will-interview">
-                    <label for="will-interview">Will Interview</label>
+                    <input id="notOffered" value="notOffered" type="radio" name="interview">
+                    <label for="notOffered">Not Offered Yet</label><br>
+                    <input id="willInterview" value="willInterview" type="radio" name="interview">
+                    <label for="willInterview">Will Interview</label>
                 </div>
                 <div id="dateInterviewSection" class="input-section">
                     <label for="date-interview">Interview Date</label><br>
@@ -55,22 +55,22 @@
                 </div>
                 <div id="offeredSection" class="input-section">
                     <h2>Job Offered?</h2>
-                    <input id="jobOffered" type="radio" name="offered">
-                    <label for="offered">Yes</label><br>
-                    <input id="noOffer" type="radio" name="no-offer">
-                    <label for="no-offer">Not Yet</label><br>
-                    <input id="notSelected" type="radio" name="not-selected">
-                    <label for="not-selected">Not Selected</label><br>
+                    <input id="jobOffered" value="jobOffered" type="radio" name="offer">
+                    <label for="jobOffered">Yes</label><br>
+                    <input id="noOffer" value="noOffer" type="radio" name="offer">
+                    <label for="noOffer">Not Yet</label><br>
+                    <input id="notSelected" value="notSelected" type="radio" name="offer">
+                    <label for="notSelected">Not Selected</label><br>
                 </div>
                 <div id="notesSection" class="input-section">
                     <label for="notes">Notes:</label><br>
                     <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
                 </div>
-                <div id="subClear" class="input-section">
-                    <input id="submitJob" class="btn-add" type="submit" value="Add Job">
-                    <input id="clearEntry" class="btn-clear" type="reset" value="Clear Entry">
-                </div>
             </form>
+            <div id="subClear" class="btn-section">
+                <button id="submitJob" class="btn-add">Save</button>
+                <button id="clearEntry" class="btn-clear">Clear</button>
+            </div>
         </div>
 
         <!--Display Section-->
@@ -87,11 +87,13 @@
                 <option value="offered">Job Offered</option>
               </select>
             <div id="displayJobs">
-                <!--jobs will display here-->
+                <table id="jobTable">
+                    <!--jobs will display here-->
+                </table>
             </div>
             <button id="newJobEntry">Add Job</button>
         </div>
-        
+
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <script src="./js/main.js" async defer></script>
     </body>
