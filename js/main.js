@@ -44,8 +44,6 @@ function main() {
     }
 };
 
-$(main())
-
 //function to create job objects, add to jobArray, send to storage
 function getNewJob() {
     
@@ -86,12 +84,10 @@ function getNewJob() {
 }
 
 //function to delete job objects
-function removeJob() {
-    var jobToRemove
-
+function removeJob(clickedJob) {
+    // console.log(clickedJob);
     //remove job from array
-
-    //save changes in local storage
+    jobArray.splice(clickedJob, 1)
     localStorage.setItem(storageKey, JSON.stringify(jobArray));
     displayJobs();
 };
@@ -149,7 +145,15 @@ function displayJobs() {
 //functions to sort list
 
 //event listeners
+$(window).on('load', main());
+
 $('#submitJob').on('click', function(){
     console.log('click')
     getNewJob()
+});
+
+$('.job-del').on('click', function(){
+    console.log('click')
+    var clickedJob = $(this).attr('data-index')
+    removeJob(clickedJob)
 })
