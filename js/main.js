@@ -5,11 +5,8 @@
     date: 10/13/22
     author: ri-ca4
 */
-
-$(main())
-
 var jobArray = [];
-var storageKey = 'myJobList';
+const storageKey = 'myJobList';
 
 //function to test local storage
 function storageAvailable() {
@@ -25,22 +22,29 @@ function storageAvailable() {
 
 //function to get job list from storage
 function main() {
-    if (storageAvailable() === true) { //check if local storage is available
-        if (localStorage.getItem(storageKey) === null) { //if there is local storage but no job data
+
+    if (storageAvailable()) { //check if local storage is available
+        if (localStorage.getItem(storageKey) === null) { //if there is job data
             alert('Add a job entry to get started!');
             $('#inputSection').show();
             $('#displaySection').hide();
-        }else{ //if there is local storage and there is job data
-            alert('Welcome Back');
-            $('#inputSection').show();
-            $('#displaySection').hide();
+
+            }else{ //if there is no job data
+
+                alert('Welcome Back');
+                $('#inputSection').hide();
+                $('#displaySection').show();
+                displayJobs();
+
         }
         }else{// if there is no local storage available
             alert('No local storage available. Please choose a different browser');
             $('#inputSection').hide();
             $('#displaySection').hide();
-        }
+    }
 };
+
+$(main())
 
 //function to create job objects, add to jobArray, send to storage
 function getNewJob() {
