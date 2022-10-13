@@ -18,43 +18,47 @@
         <![endif]-->
         
         <!--Input Section-->
-        <form>
+        <form id="newJobEntry">
+            <h1>Enter Job Information</h1>
             <div id="jobTitleSection" class="input-section">
-                <label for="job-title">Job Title</label>
+                <label for="job-title">Job Title</label><br>
                 <input id="jobTitle" type="text" name="job-title">
             </div>
             <div id="companySection" class="input-section">
-                <label for="company">Company</label>
+                <label for="company">Company</label><br>
                 <input id="company" type="text" name="company">
             </div>
             <div id="appliedSection" class="input-section">
-                <h1>Applied?</h1>
-                <label for="applied">Yes</label>
+                <h2>Applied?</h2>
                 <input id="appliedFor" type="radio" name="applied-for">
-                <label for="not-applied-for">Not Yet</label>
+                <label for="applied">Yes</label><br>
                 <input id="notAppliedFor" type="radio" name="not-applied-for">
+                <label for="not-applied-for">Not Yet</label>
             </div>
             <div id="interviewedSection" class="input-section">
-                <h1>Interview?</h1>
-                <label for="interviewed">Interviewed</label>
+                <h2>Interview?</h2>
                 <input id="interviewed" type="radio" name="interviewed">
-                <label for="not-applied-for">Not Yet</label>
+                <label for="interviewed">Interviewed</label><br>
                 <input id="notAppliedFor" type="radio" name="not-applied-for">
+                <label for="not-applied-for">Not Yet</label>
             </div>
             <div id="offeredSection" class="input-section">
-                <h1>Job Offered?</h1>
-                <label for="offered">Yes</label>
+                <h2>Job Offered?</h2>
                 <input id="jobOffered" type="radio" name="offered">
-                <label for="no-offer">Not Yet</label>
+                <label for="offered">Yes</label><br>
                 <input id="noOffer" type="radio" name="no-offer">
-                <label for="not-selected">Not Selected</label>
+                <label for="no-offer">Not Yet</label><br>
                 <input id="notSelected" type="radio" name="not-selected">
+                <label for="not-selected">Not Selected</label><br>
             </div>
             <div id="notesSection" class="input-section">
-                <label for="notes">Notes:</label>
+                <label for="notes">Notes:</label><br>
                 <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
             </div>
-            
+            <div id="subClear" class="input-section">
+                <input id="submitJob" class="btn-add" type="submit" value="Add Job">
+                <input id="clearEntry" class="btn-clear" type="reset" value="Clear Entry">
+            </div>    
         </form>
         <script src="./js/main.js" async defer></script>
     </body>
