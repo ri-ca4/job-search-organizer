@@ -36,12 +36,22 @@
                     <input id="notAppliedFor" type="radio" name="not-applied-for">
                     <label for="not-applied-for">Not Yet</label>
                 </div>
+                <div id="dateAppliedSection" class="input-section">
+                    <label for="date-applied">Date Applied</label><br>
+                    <input type="date" name="date-applied" id="dateApplied">
+                </div>
                 <div id="interviewedSection" class="input-section">
                     <h2>Interview?</h2>
                     <input id="interviewed" type="radio" name="interviewed">
                     <label for="interviewed">Interviewed</label><br>
-                    <input id="notAppliedFor" type="radio" name="not-applied-for">
-                    <label for="not-applied-for">Not Yet</label>
+                    <input id="notOfferedIntervew" type="radio" name="not-offered-intervew">
+                    <label for="not-offered-intervew">Not Offered Yet</label><br>
+                    <input id="willInterview" type="radio" name="will-interview">
+                    <label for="will-interview">Will Interview</label>
+                </div>
+                <div id="dateInterviewSection" class="input-section">
+                    <label for="date-interview">Interview Date</label><br>
+                    <input type="date" name="date-interview" id="dateInterview">
                 </div>
                 <div id="offeredSection" class="input-section">
                     <h2>Job Offered?</h2>
@@ -62,6 +72,26 @@
                 </div>
             </form>
         </div>
+
+        <!--Display Section-->
+        <div id="displaySection">
+            <label for="sort">Sort Jobs</label>
+            <select name="sort" id="sortBy">
+                <option value="notApplied">Not Applied For</option>
+                <option value="appliedFor">Applied For</option>
+                <option value="applicationDate">Application Date</option>
+                <option value="notInterviewed">Not Interviewed</option>
+                <option value="willInterviewe">Will Interview</option>
+                <option value="interviewed">Interviewed</option>
+                <option value="interviewDate">Interview Date</option>
+                <option value="offered">Job Offered</option>
+              </select>
+            <div id="displayJobs">
+                <!--jobs will display here-->
+            </div>
+            <button id="newJobEntry">Add Job</button>
+        </div>
+
         <script src="./js/main.js" async defer></script>
     </body>
 </html>
