@@ -6,6 +6,8 @@
     author: ri-ca4
 */
 
+window.load(main())
+
 var jobArray = [];
 var storageKey = 'myJobList';
 
@@ -25,12 +27,19 @@ function storageAvailable() {
 function main() {
     if (storageAvailable() === true) { //check if local storage is available
         if (localStorage.getItem(storageKey) === null) { //if there is local storage but no job data
-            
+            alert('Add a job entry to get started!');
+            $('#inputSection').show();
+            $('#displaySection').hide();
         }else{ //if there is local storage and there is job data
-            
+            alert('Welcome Back');
+            $('#inputSection').show();
+            $('#displaySection').hide();
+        }
         }else{// if there is no local storage available
-
-        };
+            alert('No local storage available. Please choose a different browser');
+            $('#inputSection').hide();
+            $('#displaySection').hide();
+        }
 };
 
 //function to create job objects, add to jobArray, send to storage
