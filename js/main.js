@@ -1,10 +1,3 @@
-// alert('connected')
-
-/*
-    title: job search organizer
-    date: 10/13/22
-    author: ri-ca4
-*/
 var jobArray = [];
 const storageKey = 'myJobList';
 
@@ -24,12 +17,15 @@ function storageAvailable() {
 function main() {
 
     if (storageAvailable()) { //check if local storage is available
-        if (localStorage.getItem(storageKey) === null) { //if there is job data
+        if (localStorage.getItem(storageKey) === null) { //if there is no job data
+            
             alert('Add a job entry to get started!');
             $('#inputSection').show();
+            $('#subClear').show();
+            $('#updateCancel').hide();
             $('#displaySection').hide();
 
-            }else{ //if there is no job data
+            }else{ //if there is job data
 
                 alert('Welcome Back');
                 $('#inputSection').hide();
@@ -38,78 +34,48 @@ function main() {
 
         }
         }else{// if there is no local storage available
+            
             alert('No local storage available. Please choose a different browser');
             $('#inputSection').hide();
             $('#displaySection').hide();
     }
 };
 
-$(main())
 
-//function to create job objects, add to jobArray, send to storage
-function getNewJob() {
-    
+//function to clear form
+function clearForm(){
     var title           = $('#jobTitle');
     var company         = $('#company');
-    var apply           = $('input[name="apply"]:checked');
     var applyDate       = $('#dateApplied');
-    var interview       = $('input[name="interview"]:checked');
     var interviewDate   = $('#dateInterview');
-    var offer           = $('input[name="offer"]:checked');
     var notes           = $('#notes');
 
-    //make user input into an object
-    let jobObject           = new Object();
-    jobObject.title         = $(title).val();
-    jobObject.company       = $(company).val();
-    jobObject.apply         = $(apply).val();
-    jobObject.applyDate     = $(applyDate).val();
-    jobObject.interview     = $(interview).val();
-    jobObject.interviewDate = $(interviewDate).val();
-    jobObject.offer         = $(offer).val();
-    jobObject.notes         = $(notes).val();
-
-    //add task to array
-    jobArray.push(jobObject);
-
-    //send item to storage
-    localStorage.setItem(storageKey, JSON.stringify(jobArray));
-
-    //reset input fields
     $(title).val('')
     $(company).val('')
     $(applyDate).val('')
     $(interviewDate).val('')
     $(notes).val('')
-
-    displayJobs();
+    $("input[name='apply']").prop('checked', false);
+    $("input[name='interview']").prop('checked', false);
+    $("input[name='offer']").prop('checked', false);
 }
 
-//function to delete job objects
-function removeJob() {
-    var jobToRemove
-
-    //remove job from array
-
-    //save changes in local storage
-    localStorage.setItem(storageKey, JSON.stringify(jobArray));
-    displayJobs();
-};
-
-//function to "edit" job objects
 
 //function to display job list
 function displayJobs() {
-    console.log('called')
     jobArray = JSON.parse(localStorage.getItem(storageKey)); //get data and parse it to array
-    console.log (jobArray)
-    var myString
+    console.log(jobArray);
+    var myString;
         if (jobArray.length == 0){//if there is no data
             alert('You have no current tasks!');
             $('#inputSection').show();
+            $('#subClear').show();
+            $('#updateCancel').hide();
             $('#displaySection').hide();
         }else{
             $('#inputSection').hide();
+            $('#subClear').hide();
+            $('#updateCancel').hide();
             $('#displaySection').show();
             for (var i = 0; i < jobArray.length; i++) { 
                 var jobTitle         = jobArray[i].title;
@@ -133,8 +99,8 @@ function displayJobs() {
                         <td class="job-offer">${jobOffer}</td>
                         <td class="job-note">${jobNote}</td>
                         <td class="job-btns">
-                            <button class="job-edit" data-index="${jobIndex}">Edit</button>
-                            <button class="job-del" data-index="${jobIndex}">Delete</button>
+                            <button class="job-edit" onclick="jobEditBtnFn(${jobIndex})">Edit</button>
+                            <button class="job-del" onclick="jobDelBtnFn(${jobIndex})">Delete</button>
                         </td>
                     </tr>`
 
@@ -146,10 +112,124 @@ function displayJobs() {
         };
 };
 
-//functions to sort list
+//create job object
+function createNewJob(){
+    var title           = $('#jobTitle');
+    var company         = $('#company');
+    var apply           = $('input[name="apply"]:checked');
+    var applyDate       = $('#dateApplied');
+    var interview       = $('input[name="interview"]:checked');
+    var interviewDate   = $('#dateInterview');
+    var offer           = $('input[name="offer"]:checked');
+    var notes           = $('#notes');
 
-//event listeners
-$('#submitJob').on('click', function(){
-    console.log('click')
-    getNewJob()
+    //make user input into an object
+    let jobObject           = new Object();
+    jobObject.title         = $(title).val();
+    jobObject.company       = $(company).val();
+    jobObject.apply         = $(apply).val();
+    jobObject.applyDate     = $(applyDate).val();
+    jobObject.interview     = $(interview).val();
+    jobObject.interviewDate = $(interviewDate).val();
+    jobObject.offer         = $(offer).val();
+    jobObject.notes         = $(notes).val();
+
+    return jobObject;
+}
+
+//function to add to jobArray, send to storage
+function saveNewJob(){
+    var newJob = createNewJob();
+    jobArray.push(newJob);
+    localStorage.setItem(storageKey, JSON.stringify(jobArray));
+    clearForm();
+}
+
+
+//function to delete job objects
+function removeJob(clickedJob) {
+    jobArray.splice(clickedJob, 1);
+    localStorage.setItem(storageKey, JSON.stringify(jobArray));
+    displayJobs();
+};
+
+
+//function to view edit job objects
+function viewJob(clickedJob) {
+    var job = jobArray[clickedJob];
+    $('#updateJob').attr('data-index', clickedJob);
+
+    var title           = $('#jobTitle');
+    var company         = $('#company');
+    var applyDate       = $('#dateApplied');
+    var interviewDate   = $('#dateInterview');
+    var notes           = $('#notes');
+
+    $(title).val(job.title);
+    $(company).val(job.company);
+    $(`input[name='apply'][value='${job.apply}']`).prop('checked', true);
+    $(applyDate).val(job.applyDate);
+    $(`input[name='interview'][value='${job.interview}']`).prop('checked', true);
+    $(interviewDate).val(job.interviewDate);
+    $(`input[name='offer'][value='${job.offer}']`).prop('checked', true);
+    $(notes).val(job.notes);
+
+    $('#inputSection').show();
+    $('#updateCancel').show();
+    $('#subClear').hide();
+    $('#displaySection').hide();
+}
+
+//function to save edited job and rm old job
+function saveEdit(clickedJob){
+    var editedJob = createNewJob();
+    jobArray.push(editedJob);
+    localStorage.setItem(storageKey, JSON.stringify(jobArray));
+    clearForm();
+    removeJob(clickedJob);
+}
+
+
+//Event Listeners
+
+$(window).on('load', main());
+
+$('#clearEntry').click(function(){
+    clearForm()
+});
+
+$('#submitJob').click(function(){
+    saveNewJob();
+    displayJobs();
+});
+
+$('#cancelEdit').click(function(){
+    clearForm();
+    $('#inputSection').hide();
+    $('#subClear').hide();
+    $('#updateCancel').hide();
+    $('#displaySection').show();
 })
+
+//onclick function
+function jobDelBtnFn(e){
+    removeJob(e);
+}
+
+//onclick function
+function jobEditBtnFn(e){
+    viewJob(e);
+}
+
+$('#updateJob').click(function(){
+     var clickedJob = $(this).attr('data-index');
+     saveEdit(clickedJob);
+})
+
+//onclick function
+function newJobBtn(){
+    $('#inputSection').show();
+    $('#subClear').show();
+    $('#updateCancel').hide();
+    $('#displaySection').hide();
+}
