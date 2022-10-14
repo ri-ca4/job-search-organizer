@@ -66,7 +66,7 @@ function clearForm(){
 //function to display job list
 function displayJobs() {
     jobArray = JSON.parse(localStorage.getItem(storageKey)); //get data and parse it to array
-    console.log(jobArray);
+
     var myString;
         if (jobArray.length == 0){//if there is no data
             alert('You have no current tasks!');
@@ -88,7 +88,7 @@ function displayJobs() {
                 var jobInterview     = jobArray[i].interview;
                 var jobInterviewDate = jobArray[i].interviewDate;
                 var jobOffer         = jobArray[i].offer;
-                var jobNote          = jobArray[i].note;
+                var jobNotes          = jobArray[i].notes;
                 var jobIndex         = i;
 
                 var string =
@@ -100,7 +100,7 @@ function displayJobs() {
                         <td class="job-interview">${jobInterview}</td>
                         <td class="job-interview-date">${jobInterviewDate}</td>
                         <td class="job-offer">${jobOffer}</td>
-                        <td class="job-note">${jobNote}</td>
+                        <td class="job-note">${jobNotes}</td>
                         <td class="job-btns">
                             <button class="job-edit" onclick="jobEditBtnFn(${jobIndex})">Edit</button>
                             <button class="job-del" onclick="jobDelBtnFn(${jobIndex})">Delete</button>
@@ -203,7 +203,7 @@ function displaySorted(list){
             var jobInterview     = list[i].interview;
             var jobInterviewDate = list[i].interviewDate;
             var jobOffer         = list[i].offer;
-            var jobNote          = list[i].note;
+            var jobNotes          = list[i].notes;
             var jobIndex         = i;
 
             var string =
@@ -215,7 +215,7 @@ function displaySorted(list){
                     <td class="job-interview">${jobInterview}</td>
                     <td class="job-interview-date">${jobInterviewDate}</td>
                     <td class="job-offer">${jobOffer}</td>
-                    <td class="job-note">${jobNote}</td>
+                    <td class="job-note">${jobNotes}</td>
                     <td class="job-btns">
                         <button class="job-edit" onclick="jobEditBtnFn(${jobIndex})">Edit</button>
                         <button class="job-del" onclick="jobDelBtnFn(${jobIndex})">Delete</button>
@@ -228,7 +228,6 @@ function displaySorted(list){
 
 
 function sortByNotApplied(){
-    console.log('not applied for');
     var list = [];
     for (i=0; i<jobArray.length; i++){
         if(jobArray[i].apply == 'notAppliedFor'){
@@ -239,7 +238,6 @@ function sortByNotApplied(){
 }
 
 function sortByApplied(){
-    console.log('applied for');
     var list = [];
     for (i=0; i<jobArray.length; i++){
         if(jobArray[i].apply == 'appliedFor'){
@@ -250,7 +248,6 @@ function sortByApplied(){
 }
 
 function sortByApplyDate(){
-    console.log('application date');
     var list = [];
     var listB = [];
     for (i=0; i<jobArray.length; i++){
@@ -266,7 +263,6 @@ function sortByApplyDate(){
 }
 
 function sortByNotInterview(){
-    console.log('not interviewed');
     var list = [];
     for (i=0; i<jobArray.length; i++){
         if(jobArray[i].interview == 'notOffered' || jobArray[i].interview == 'willInterview'){
@@ -277,7 +273,6 @@ function sortByNotInterview(){
 }
 
 function sortByWillInterview(){
-    console.log('will interview');
     var list = [];
     for (i=0; i<jobArray.length; i++){
         if(jobArray[i].interview == 'willInterview'){
@@ -288,8 +283,6 @@ function sortByWillInterview(){
 }
 
 function sortByInterviewed(){
-    console.log('interviewed');
-    console.log('will interview');
     var list = [];
     for (i=0; i<jobArray.length; i++){
         if(jobArray[i].interview == 'interviewed'){
@@ -300,7 +293,6 @@ function sortByInterviewed(){
 }
 
 function sortByInterviewDate(){
-    console.log('interview date');
     var list = [];
     var listB = [];
     for (i=0; i<jobArray.length; i++){
@@ -316,7 +308,6 @@ function sortByInterviewDate(){
 }
 
 function sortByOffered(){
-    console.log('offered');
     var list = [];
     for (i=0; i<jobArray.length; i++){
         if(jobArray[i].offer == 'jobOffered'){
