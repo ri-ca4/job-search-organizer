@@ -193,8 +193,138 @@ function saveEdit(clickedJob){
 }
 
 //sort functions
+function displaySorted(list){
+    var myString;
+        for (var i = 0; i < list.length; i++) { 
+            var jobTitle         = list[i].title;
+            var jobCompany       = list[i].company;
+            var jobApply         = list[i].apply;
+            var jobApplyDate     = list[i].applyDate;
+            var jobInterview     = list[i].interview;
+            var jobInterviewDate = list[i].interviewDate;
+            var jobOffer         = list[i].offer;
+            var jobNote          = list[i].note;
+            var jobIndex         = i;
+
+            var string =
+                `<tr class="job-item" id="job${jobIndex}">
+                    <td class="job-title">${jobTitle}</td>
+                    <td class="job-company">${jobCompany}</td>
+                    <td class="job-apply">${jobApply}</td>
+                    <td class="job-apply-date">${jobApplyDate}</td>
+                    <td class="job-interview">${jobInterview}</td>
+                    <td class="job-interview-date">${jobInterviewDate}</td>
+                    <td class="job-offer">${jobOffer}</td>
+                    <td class="job-note">${jobNote}</td>
+                    <td class="job-btns">
+                        <button class="job-edit" onclick="jobEditBtnFn(${jobIndex})">Edit</button>
+                        <button class="job-del" onclick="jobDelBtnFn(${jobIndex})">Delete</button>
+                    </td>
+                </tr>`
+            myString += string;
+        };
+    $('#jobTable').html(myString);
+};
 
 
+function sortByNotApplied(){
+    console.log('not applied for');
+    var list = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].apply == 'notAppliedFor'){
+            list.push(jobArray[i])
+        }
+    }
+    displaySorted(list);
+}
+
+function sortByApplied(){
+    console.log('applied for');
+    var list = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].apply == 'appliedFor'){
+            list.push(jobArray[i])
+        }
+    }
+    displaySorted(list);
+}
+
+function sortByApplyDate(){
+    console.log('application date');
+    var list = [];
+    var listB = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].apply == 'appliedFor'){
+            list.push(jobArray[i])
+        }else{
+            listB.push(jobArray[i])
+        }
+    }
+    list.sort((a, b) =>(a.applyDate > b.applyDate) ? 1 : -1);
+    list = list.concat(listB);
+    displaySorted(list);
+}
+
+function sortByNotInterview(){
+    console.log('not interviewed');
+    var list = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].interview == 'notOffered' || jobArray[i].interview == 'willInterview'){
+            list.push(jobArray[i])
+        }
+    }
+    displaySorted(list);
+}
+
+function sortByWillInterview(){
+    console.log('will interview');
+    var list = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].interview == 'willInterview'){
+            list.push(jobArray[i])
+        }
+    }
+    displaySorted(list);
+}
+
+function sortByInterviewed(){
+    console.log('interviewed');
+    console.log('will interview');
+    var list = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].interview == 'interviewed'){
+            list.push(jobArray[i])
+        }
+    }
+    displaySorted(list);
+}
+
+function sortByInterviewDate(){
+    console.log('interview date');
+    var list = [];
+    var listB = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].interview == 'interviewed' || jobArray[i].interview == 'willInterview'){
+            list.push(jobArray[i])
+        }else{
+            listB.push(jobArray[i])
+        }
+    }
+    list.sort((a, b) =>(a.interviewDate > b.interviewDate) ? 1 : -1);
+    list = list.concat(listB);
+    displaySorted(list);
+}
+
+function sortByOffered(){
+    console.log('offered');
+    var list = [];
+    for (i=0; i<jobArray.length; i++){
+        if(jobArray[i].offer == 'jobOffered'){
+            list.push(jobArray[i])
+        }
+    }
+    displaySorted(list);
+}
 
 
 //Event Listeners
@@ -246,4 +376,19 @@ function newJobBtn(){
     $('#updateCancel').hide();
     $('#displaySection').hide();
     $('#cancelAdd').attr('disabled', false);
+}
+
+function sortJobs(){
+    var sort = $('#sortBy');
+    var sortBy = sort.val();
+
+    if(sortBy == 'all'){displayJobs()};
+    if(sortBy == 'notApplied'){sortByNotApplied()}
+    if(sortBy == 'appliedFor'){sortByApplied()}
+    if(sortBy == 'applicationDate'){sortByApplyDate()}
+    if(sortBy == 'notInterviewed'){sortByNotInterview()}
+    if(sortBy == 'willInterview'){sortByWillInterview()}
+    if(sortBy == 'interviewed'){sortByInterviewed()}
+    if(sortBy == 'interviewDate'){sortByInterviewDate()}
+    if(sortBy == 'offered'){sortByOffered()}
 }

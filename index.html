@@ -80,17 +80,19 @@
 
         <!--Display Section-->
         <div id="displaySection">
-            <label for="sort">Sort Jobs</label>
+            <label for="sort">Sort By:</label>
             <select name="sort" id="sortBy">
+                <option value="all" selected>All</option>
                 <option value="notApplied">Not Applied For</option>
                 <option value="appliedFor">Applied For</option>
                 <option value="applicationDate">Application Date</option>
                 <option value="notInterviewed">Not Interviewed</option>
-                <option value="willInterviewe">Will Interview</option>
+                <option value="willInterview">Will Interview</option>
                 <option value="interviewed">Interviewed</option>
                 <option value="interviewDate">Interview Date</option>
                 <option value="offered">Job Offered</option>
               </select>
+              <button id="sort" onclick="sortJobs()">Sort</button>
             <div id="displayJobs">
                 <table id="jobTable">
                     <!--jobs will display here-->
