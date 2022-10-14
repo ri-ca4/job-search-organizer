@@ -27,6 +27,8 @@ function main() {
         if (localStorage.getItem(storageKey) === null) { //if there is job data
             alert('Add a job entry to get started!');
             $('#inputSection').show();
+            $('#subClear').show();
+            $('#updateCancel').hide();
             $('#displaySection').hide();
 
             }else{ //if there is no job data
@@ -83,17 +85,6 @@ function getNewJob() {
     displayJobs();
 }
 
-//function to delete job objects
-function removeJob(clickedJob) {
-    // console.log(clickedJob);
-    //remove job from array
-    jobArray.splice(clickedJob, 1)
-    localStorage.setItem(storageKey, JSON.stringify(jobArray));
-    displayJobs();
-};
-
-//function to "edit" job objects
-
 //function to display job list
 function displayJobs() {
     console.log('called')
@@ -103,6 +94,8 @@ function displayJobs() {
         if (jobArray.length == 0){//if there is no data
             alert('You have no current tasks!');
             $('#inputSection').show();
+            $('#subClear').show();
+            $('#updateCancel').hide();
             $('#displaySection').hide();
         }else{
             $('#inputSection').hide();
@@ -142,18 +135,75 @@ function displayJobs() {
         };
 };
 
+//function to delete job objects
+function removeJob(clickedJob) {
+    //remove job from array
+    jobArray.splice(clickedJob, 1)
+    localStorage.setItem(storageKey, JSON.stringify(jobArray));
+    displayJobs();
+};
+
+//function to edit job objects
+function editJob(clickedJob) {
+    var job = jobArray[clickedJob];
+    console.log(job);
+
+    //set form values to job values  
+    var title           = $('#jobTitle');
+    var company         = $('#company');
+    var applyDate       = $('#dateApplied');
+    var interviewDate   = $('#dateInterview');
+    var notes           = $('#notes');
+
+    $(title).val(job.title);
+    $(company).val(job.company);
+    $(`input[name='apply'][value='${job.apply}']`).prop('checked', true);
+    $(applyDate).val(job.applyDate);
+    $(`input[name='interview'][value='${job.interview}']`).prop('checked', true);
+    $(interviewDate).val(job.interviewDate);
+    $(`input[name='offer'][value='${job.offer}']`).prop('checked', true);
+    $(notes).val(job.notes);
+
+    //display form
+    $('#updateCancel').show();
+    $('#inputSection').show();
+    $('#subClear').hide();
+    $('#displaySection').hide();
+}
+
+//function to save edited job
+function saveEdit(jobIndex){
+    console.log('saved')
+    getNewJob();
+    removeJob(jobIndex);
+}
+
 //functions to sort list
 
 //event listeners
 $(window).on('load', main());
 
 $('#submitJob').on('click', function(){
-    console.log('click')
-    getNewJob()
+    console.log('click');
+    getNewJob();
 });
 
 $('.job-del').on('click', function(){
-    console.log('click')
-    var clickedJob = $(this).attr('data-index')
-    removeJob(clickedJob)
+    var clickedJob = $(this).attr('data-index');
+    removeJob(clickedJob);
+})
+
+$('.job-edit').on('click', function(){
+    var clickedJob = $(this).attr('data-index');
+    $("#updateJob").attr("data-index", clickedJob);
+    editJob(clickedJob);
+})
+
+$('#updateJob').on('click', function(){
+    var jobIndex = $(this).attr('data-index');
+    saveEdit(jobIndex);
+})
+
+$('#cancelEdit').on('click', function(){
+    displayJobs();
 })
