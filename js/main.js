@@ -24,6 +24,7 @@ function main() {
             $('#subClear').show();
             $('#updateCancel').hide();
             $('#displaySection').hide();
+            $('#cancelAdd').attr('disabled', true);
 
             }else{ //if there is job data
 
@@ -38,6 +39,7 @@ function main() {
             alert('No local storage available. Please choose a different browser');
             $('#inputSection').hide();
             $('#displaySection').hide();
+
     }
 };
 
@@ -72,6 +74,7 @@ function displayJobs() {
             $('#subClear').show();
             $('#updateCancel').hide();
             $('#displaySection').hide();
+            $('#cancelAdd').attr('disabled', true)
         }else{
             $('#inputSection').hide();
             $('#subClear').hide();
@@ -189,6 +192,10 @@ function saveEdit(clickedJob){
     removeJob(clickedJob);
 }
 
+//sort functions
+
+
+
 
 //Event Listeners
 
@@ -211,25 +218,32 @@ $('#cancelEdit').click(function(){
     $('#displaySection').show();
 })
 
-//onclick function
+$('#updateJob').click(function(){
+    var clickedJob = $(this).attr('data-index');
+    saveEdit(clickedJob);
+})
+
+$('#cancelAdd').click(function(){
+    clearForm();
+    $('#inputSection').hide();
+    $('#subClear').hide();
+    $('#updateCancel').hide();
+    $('#displaySection').show();
+})
+
+//onclick functions
 function jobDelBtnFn(e){
     removeJob(e);
 }
 
-//onclick function
 function jobEditBtnFn(e){
     viewJob(e);
 }
 
-$('#updateJob').click(function(){
-     var clickedJob = $(this).attr('data-index');
-     saveEdit(clickedJob);
-})
-
-//onclick function
 function newJobBtn(){
     $('#inputSection').show();
     $('#subClear').show();
     $('#updateCancel').hide();
     $('#displaySection').hide();
+    $('#cancelAdd').attr('disabled', false);
 }
