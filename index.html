@@ -67,14 +67,14 @@
                     <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
                 </div>
             </form>
-            <div id="subClear" class="btn-section">
-                <button id="submitJob" class="btn-add">Save</button>
-                <button id="clearEntry" class="btn-clear">Clear</button>
-            </div>
-            <div id="updateCancel" class="btn-section">
-                <button id="updateJob" class="btn-update" data-index="">Save</button>
-                <button id="cancelEdit" class="btn-cancel">Cancel</button>
-            </div>
+        </div>
+        <div id="subClear" class="btn-section">
+            <button id="submitJob" class="btn-add">Save</button>
+            <button id="clearEntry" class="btn-clear">Clear</button>
+        </div>
+        <div id="updateCancel" class="btn-section">
+            <button id="updateJob" class="btn-update" data-index="">Save</button>
+            <button id="cancelEdit" class="btn-cancel">Cancel</button>
         </div>
 
         <!--Display Section-->
@@ -95,7 +95,7 @@
                     <!--jobs will display here-->
                 </table>
             </div>
-            <button id="newJobEntry">Add Job</button>
+            <button id="newJobEntry" onclick="newJobBtn()">Add Job</button>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
