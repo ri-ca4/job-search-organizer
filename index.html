@@ -95,7 +95,21 @@
               <button id="sort" onclick="sortJobs()">Sort</button>
             <div id="displayJobs">
                 <table id="jobTable">
-                    <!--jobs will display here-->
+                    <thead>
+                        <tr>
+                            <th class="job-title">Job Title:</th>
+                            <th class="job-company">Company:</th>
+                            <th class="job-apply">Applied:</th>
+                            <th class="job-apply-date">Application Date:</th>
+                            <th class="job-interview">Interview:</th>
+                            <th class="job-interview-date">Interview Date:</th>
+                            <th class="job-offer">Offer:</span></th>
+                            <th class="job-note">Notes:</th>
+                            <th class="job-btns"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="jobRows">
+                    </tbody>
                 </table>
             </div>
             <button id="newJobEntry" onclick="newJobBtn()">Add Job</button>

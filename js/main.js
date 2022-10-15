@@ -95,11 +95,11 @@ function displayJobs() {
                     `<tr class="job-item" id="${jobId}">
                         <td class="job-title">${jobTitle}</td>
                         <td class="job-company">${jobCompany}</td>
-                        <td class="job-apply">${jobApply}</td>
+                        <td class="job-apply"><span class="${jobApply}"></span></td>
                         <td class="job-apply-date">${jobApplyDate}</td>
-                        <td class="job-interview">${jobInterview}</td>
+                        <td class="job-interview"><span class="${jobInterview}"></span></td>
                         <td class="job-interview-date">${jobInterviewDate}</td>
-                        <td class="job-offer">${jobOffer}</td>
+                        <td class="job-offer"><span class="${jobOffer}"></span></td>
                         <td class="job-note">${jobNotes}</td>
                         <td class="job-btns">
                             <button class="job-edit" onclick="jobEditBtnFn(${jobIndex})">Edit</button>
@@ -110,7 +110,7 @@ function displayJobs() {
                 myString += string;
             };
 
-            $('#jobTable').html(myString);
+            $('#jobRows').html(myString);
 
         };
 };
@@ -196,12 +196,7 @@ function saveEdit(clickedJob){
     clearForm();
     removeJob(clickedJob);
 }
-/*
-!!!!!!!!!!!!!!!Buttons are not indexing correctly!!!!!!
 
-
-
-*/
 //sort functions
 function displaySorted(list){
     var myString;
@@ -222,11 +217,11 @@ function displaySorted(list){
                 `<tr class="job-item" id="${jobId}">
                     <td class="job-title">${jobTitle}</td>
                     <td class="job-company">${jobCompany}</td>
-                    <td class="job-apply">${jobApply}</td>
+                    <td class="job-apply"><span class="${jobApply}"></span></td>
                     <td class="job-apply-date">${jobApplyDate}</td>
-                    <td class="job-interview">${jobInterview}</td>
+                    <td class="job-interview"><span class="${jobInterview}"></span></td>
                     <td class="job-interview-date">${jobInterviewDate}</td>
-                    <td class="job-offer">${jobOffer}</td>
+                    <td class="job-offer"><span class="${jobOffer}"></span></td>
                     <td class="job-note">${jobNotes}</td>
                     <td class="job-btns">
                         <button class="job-edit" onclick="jobEditBtnFn(${jobIndex})">Edit</button>
@@ -235,7 +230,7 @@ function displaySorted(list){
                 </tr>`
             myString += string;
         };
-    $('#jobTable').html(myString);
+    $('#jobRows').html(myString);
 };
 
 
