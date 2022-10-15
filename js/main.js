@@ -43,7 +43,6 @@ function main() {
     }
 };
 
-
 //function to clear form
 function clearForm(){
     var title           = $('#jobTitle');
@@ -88,11 +87,12 @@ function displayJobs() {
                 var jobInterview     = jobArray[i].interview;
                 var jobInterviewDate = jobArray[i].interviewDate;
                 var jobOffer         = jobArray[i].offer;
-                var jobNotes          = jobArray[i].notes;
+                var jobNotes         = jobArray[i].notes;
+                var jobId            = jobArray[i].id;
                 var jobIndex         = i;
 
                 var string =
-                    `<tr class="job-item" id="job${jobIndex}">
+                    `<tr class="job-item" id="${jobId}">
                         <td class="job-title">${jobTitle}</td>
                         <td class="job-company">${jobCompany}</td>
                         <td class="job-apply">${jobApply}</td>
@@ -115,6 +115,10 @@ function displayJobs() {
         };
 };
 
+function uniqueID() {
+    return Math.floor(Math.random() * Date.now())
+}
+
 //create job object
 function createNewJob(){
     var title           = $('#jobTitle');
@@ -136,6 +140,7 @@ function createNewJob(){
     jobObject.interviewDate = $(interviewDate).val();
     jobObject.offer         = $(offer).val();
     jobObject.notes         = $(notes).val();
+    jobObject.id            = uniqueID();
 
     return jobObject;
 }
@@ -149,7 +154,7 @@ function saveNewJob(){
 }
 
 
-//function to delete job objects
+//function to delete job objects <---this one works
 function removeJob(clickedJob) {
     jobArray.splice(clickedJob, 1);
     localStorage.setItem(storageKey, JSON.stringify(jobArray));
@@ -160,7 +165,7 @@ function removeJob(clickedJob) {
 //function to view edit job objects
 function viewJob(clickedJob) {
     var job = jobArray[clickedJob];
-    $('#updateJob').attr('data-index', clickedJob);
+    $('#updateJob').attr('data-id', job.id);
 
     var title           = $('#jobTitle');
     var company         = $('#company');
@@ -191,10 +196,16 @@ function saveEdit(clickedJob){
     clearForm();
     removeJob(clickedJob);
 }
+/*
+!!!!!!!!!!!!!!!Buttons are not indexing correctly!!!!!!
 
+
+
+*/
 //sort functions
 function displaySorted(list){
     var myString;
+        if(list.length == 0){myString = ''}
         for (var i = 0; i < list.length; i++) { 
             var jobTitle         = list[i].title;
             var jobCompany       = list[i].company;
@@ -203,11 +214,12 @@ function displaySorted(list){
             var jobInterview     = list[i].interview;
             var jobInterviewDate = list[i].interviewDate;
             var jobOffer         = list[i].offer;
-            var jobNotes          = list[i].notes;
+            var jobNotes         = list[i].notes;
+            var jobId            = list[i].id
             var jobIndex         = i;
 
             var string =
-                `<tr class="job-item" id="job${jobIndex}">
+                `<tr class="job-item" id="${jobId}">
                     <td class="job-title">${jobTitle}</td>
                     <td class="job-company">${jobCompany}</td>
                     <td class="job-apply">${jobApply}</td>
@@ -230,7 +242,7 @@ function displaySorted(list){
 function sortByNotApplied(){
     var list = [];
     for (i=0; i<jobArray.length; i++){
-        if(jobArray[i].apply == 'notAppliedFor'){
+        if(jobArray[i].apply == 'notAppliedFor' || jobArray[i].apply == null){
             list.push(jobArray[i])
         }
     }
@@ -265,7 +277,7 @@ function sortByApplyDate(){
 function sortByNotInterview(){
     var list = [];
     for (i=0; i<jobArray.length; i++){
-        if(jobArray[i].interview == 'notOffered' || jobArray[i].interview == 'willInterview'){
+        if(jobArray[i].interview == 'notOffered' || jobArray[i].interview == 'willInterview' || jobArray[i].interview == null){
             list.push(jobArray[i])
         }
     }
@@ -340,8 +352,9 @@ $('#cancelEdit').click(function(){
 })
 
 $('#updateJob').click(function(){
-    var clickedJob = $(this).attr('data-index');
-    saveEdit(clickedJob);
+    var thisId = parseInt($(this).attr('data-id'));
+    var job = jobArray.map(object => object.id).indexOf(thisId);
+    saveEdit(job);
 })
 
 $('#cancelAdd').click(function(){
