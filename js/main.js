@@ -27,6 +27,7 @@ function main() {
             }else{ //if there is job data
 
                 alert('Welcome Back');
+                $('#first-visit').hide();
                 $('#inputSection').hide();
                 $('#displaySection').show();
                 displayJobs();
@@ -35,6 +36,7 @@ function main() {
         }else{// if there is no local storage available
             
             alert('No local storage available. Please choose a different browser');
+            $('#first-visit').hide();
             $('#inputSection').hide();
             $('#displaySection').hide();
 

@@ -1,12 +1,88 @@
 /* body{background-color:aqua} */
 
-:root{
+:root {
     --white: #fff;
     --black: #000;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+
+}
+
+button {
+
+}
+
+#containter{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#first-visit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh;
+    text-align: center;
+}
+
+#inputSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh 5vh 5vh 0;
+    text-align: center;
+}
+
+.input-group,
+.input-group h2 {
+    margin-top: 1.5em;
+}
+
+.input-group.radio {
+    margin: auto;
+    max-width: fit-content;
+    text-align: left;
+}
+
+.btn-section {
+    margin: 5vh auto;
+    max-width: fit-content;
+}
+
+#displaySection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vw;
+}
+
+table th {
+    padding: 3px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 25vw;
+    background: white;
 }
