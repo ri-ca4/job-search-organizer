@@ -1,12 +1,151 @@
 /* body{background-color:aqua} */
 
-:root{
+:root {
     --white: #fff;
     --black: #000;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+button {
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    padding: .25em;
+    border-radius: .5em;
+}
+
+#containter{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#first-visit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh;
+    text-align: center;
+}
+
+#inputSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh 5vh 5vh 0;
+    text-align: center;
+}
+
+.input-group,
+.input-group h2 {
+    margin-top: 1.5em;
+}
+
+.input-group.radio {
+    margin: auto;
+    max-width: fit-content;
+    text-align: left;
+}
+
+.btn-section {
+    margin: 5vh auto;
+    max-width: fit-content;
+}
+
+#displaySection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5vw;
+}
+
+#newJobEntry {
+    max-width: fit-content;
+}
+
+tr {
+    text-align: center;
+}
+
+table th {
+    padding: 3px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 25vw;
+    background: var(--white);
+}
+
+.appliedFor,
+.notAppliedFor,
+.interviewed,
+.notOffered,
+.willInterview,
+.jobOffered,
+.noOffer,
+.notSelected {
+    background-size: 1.5em 1.5em;
+    display: inline-block;
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.appliedFor {
+    background-image: url('../img/done.png');
+}
+
+.notAppliedFor {
+    background-image: url('../img/notyet.png');
+}
+
+.interviewed{
+    background-image: url('../img/done.png');
+
+}
+
+.notOffered{
+    background-image: url('../img/notyet.png');
+}
+
+.willInterview {
+    background-image: url('../img/scheduled.png');
+}
+
+.jobOffered {
+    background-image: url('../img/offered.png');
+}
+
+.noOffer {
+    background-image: url('../img/unknown.png');
+}
+
+.notSelected {
+    background-image: url('../img/no.png');
+}
+
+textarea{
+    overflow-y: scroll;
+    height: 20vh;
 }
