@@ -241,7 +241,7 @@ function displaySorted(list){
                     <td class="job-interview"><span class="${jobInterview}"></span></td>
                     <td class="job-interview-date">${jobInterviewDate}</td>
                     <td class="job-offer"><span class="${jobOffer}"></span></td>
-                    <td class="job-note">${jobNotes}</td>
+                    <td class="job-note"><button class="view-notes" onClick="dispNote(${jobId})">View Notes</button></td>
                     <td class="job-btns">
                         <button class="job-edit" onclick="jobEditBtnFn(${jobIndex})">Edit</button>
                         <button class="job-del" onclick="jobDelBtnFn(${jobIndex})">Delete</button>
