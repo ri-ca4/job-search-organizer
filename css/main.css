@@ -20,11 +20,14 @@ h2 {
 }
 
 p {
-
+    text-align: center;
 }
 
 button {
-
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    padding: .25em;
+    border-radius: .5em;
 }
 
 #containter{
@@ -73,9 +76,17 @@ button {
 #displaySection {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     margin: 5vw;
+}
+
+#newJobEntry {
+    max-width: fit-content;
+}
+
+tr {
+    text-align: center;
 }
 
 table th {
@@ -84,5 +95,52 @@ table th {
     top: 0;
     z-index: 1;
     width: 25vw;
-    background: white;
+    background: var(--white);
+}
+
+.appliedFor,
+.notAppliedFor,
+.interviewed,
+.notOffered,
+.willInterview,
+.jobOffered,
+.noOffer,
+.notSelected {
+    background-size: 1.5em 1.5em;
+    display: inline-block;
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.appliedFor {
+    background-image: url('../img/done.png');
+}
+
+.notAppliedFor {
+    background-image: url('../img/notyet.png');
+}
+
+.interviewed{
+    background-image: url('../img/done.png');
+
+}
+
+.notOffered{
+    background-image: url('../img/notyet.png');
+}
+
+.willInterview {
+    background-image: url('../img/scheduled.png');
+}
+
+.jobOffered {
+    background-image: url('../img/offered.png');
+}
+
+.noOffer {
+    background-image: url('../img/unknown.png');
+}
+
+.notSelected {
+    background-image: url('../img/no.png');
 }
