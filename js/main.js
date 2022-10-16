@@ -18,13 +18,11 @@ function main() {
 
     if (storageAvailable()) { //check if local storage is available
         if (localStorage.getItem(storageKey) === null) { //if there is no job data
-            
-            alert('Add a job entry to get started!');
-            $('#inputSection').show();
-            $('#subClear').show();
+            $('#first-visit').show();
+            $('#inputSection').hide();
+            $('#subClear').hide();
             $('#updateCancel').hide();
             $('#displaySection').hide();
-            $('#cancelAdd').attr('disabled', true);
 
             }else{ //if there is job data
 
@@ -60,6 +58,15 @@ function clearForm(){
     $("input[name='interview']").prop('checked', false);
     $("input[name='offer']").prop('checked', false);
 }
+
+//show input section on first visit
+$('#first-visit-continue').click(function(){
+    $('#first-visit').hide();
+    alert('Add a job entry to get started!');
+    $('#inputSection').show();
+    $('#subClear').show();
+    $('#cancelAdd').attr('disabled', true);
+})
 
 
 //function to display job list
