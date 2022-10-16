@@ -144,3 +144,8 @@ table th {
 .notSelected {
     background-image: url('../img/no.png');
 }
+
+textarea{
+    overflow-y: scroll;
+    height: 20vh;
+}
