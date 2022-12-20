@@ -228,9 +228,8 @@ function displaySorted(list){
             var jobInterview     = list[i].interview;
             var jobInterviewDate = list[i].interviewDate;
             var jobOffer         = list[i].offer;
-            var jobNotes         = list[i].notes;
             var jobId            = list[i].id
-            var jobIndex         = i;
+            var jobIndex         = jobArray.map(object => object.id).indexOf(list[i].id);
 
             var string =
                 `<tr class="job-item" id="${jobId}">
